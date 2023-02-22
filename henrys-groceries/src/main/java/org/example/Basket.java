@@ -14,7 +14,11 @@ public class Basket {
         products.add(product);
     }
 
-    public double getTotal() {
-        return products.get(0).getCost();
+    public String getTotal() {
+        double total = 0;
+        for (Product product : products) {
+            total += product.getCost();
+        }
+        return String.format("%.2f", total);
     }
 }

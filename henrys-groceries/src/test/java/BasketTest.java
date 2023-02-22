@@ -10,8 +10,18 @@ public class BasketTest {
         Basket basket = new Basket();
         Product product = new Product("soup", "tin", 0.65);
         basket.addProduct(product);
-        double expected = 0.65;
-        double actual = basket.getTotal();
+        String expected = "0.65";
+        String actual = basket.getTotal();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void canAddTwoProductsToBasket() {
+        Basket basket = new Basket();
+        basket.addProduct(new Product("soup", "tin", 0.65));
+        basket.addProduct(new Product("bread", "loaf", 0.80));
+        String expected = "1.45";
+        String actual = basket.getTotal();
         Assertions.assertEquals(expected, actual);
     }
 
