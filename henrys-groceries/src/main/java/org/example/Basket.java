@@ -16,9 +16,26 @@ public class Basket {
 
     public String getTotal() {
         double total = 0;
+        int noOfSoup = 0;
+        int noOfBread = 0;
         for (Product product : products) {
+            if (product == Product.SOUP) {
+                noOfSoup++;
+            } else if (product == Product.BREAD) {
+                noOfBread++;
+            }
             total += product.getCost();
         }
+        double discount = 0;
+        for (; noOfBread > 0; noOfBread--) {
+            if (noOfSoup >= 2) {
+                discount += Product.BREAD.getCost() / 2;
+                noOfSoup -= 2;
+            } else {
+                break;
+            }
+        }
+        total -= discount;
         return String.format("%.2f", total);
     }
 }

@@ -23,4 +23,16 @@ public class BasketTest {
         String actual = basket.getTotal();
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    public void buyTwoTinsOfSoupAndGetALoafOdBreadHalfPrice() {
+        Basket basket = new Basket();
+        basket.addProduct(Product.SOUP);
+        basket.addProduct(Product.SOUP);
+        basket.addProduct(Product.BREAD);
+        String expected = "1.70";
+        String actual = basket.getTotal();
+        Assertions.assertEquals(expected, actual);
+    }
+
 }
