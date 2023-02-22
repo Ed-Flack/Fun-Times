@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.temporal.TemporalAmount;
 
 public class BasketTest {
 
@@ -27,12 +28,34 @@ public class BasketTest {
     }
 
     @Test
-    public void buyTwoTinsOfSoupAndGetALoafOdBreadHalfPrice() {
+    public void buyTwoTinsOfSoupAndGetALoafOfBreadHalfPrice() {
         Basket basket = new Basket(LocalDate.now());
         basket.addProduct(Product.SOUP);
         basket.addProduct(Product.SOUP);
         basket.addProduct(Product.BREAD);
         String expected = "1.70";
+        String actual = basket.getTotal();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void buyTwoTinsOfSoupAndGetALoafOfBreadHalfPriceBeforeOfferStartDate() {
+        Basket basket = new Basket(LocalDate.now().minusDays(2));
+        basket.addProduct(Product.SOUP);
+        basket.addProduct(Product.SOUP);
+        basket.addProduct(Product.BREAD);
+        String expected = "2.10";
+        String actual = basket.getTotal();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void buyTwoTinsOfSoupAndGetALoafOfBreadHalfPriceAfterOfferEndDate() {
+        Basket basket = new Basket(LocalDate.now().plusDays(7));
+        basket.addProduct(Product.SOUP);
+        basket.addProduct(Product.SOUP);
+        basket.addProduct(Product.BREAD);
+        String expected = "2.10";
         String actual = basket.getTotal();
         Assertions.assertEquals(expected, actual);
     }

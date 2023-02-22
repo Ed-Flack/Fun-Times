@@ -7,9 +7,12 @@ import java.util.List;
 public class Basket {
     private List<Product> products;
     private LocalDate timeOfPurchase;
+    private boolean soupAndBreadOfferIsRunning;
 
     public Basket(LocalDate timeOfPurchase) {
         this.timeOfPurchase = timeOfPurchase;
+        soupAndBreadOfferIsRunning = timeOfPurchase.isAfter(LocalDate.now().minusDays(1))
+                && timeOfPurchase.isBefore(LocalDate.now().plusDays(6));
         products = new ArrayList<>();
     }
 
@@ -30,12 +33,14 @@ public class Basket {
             total += product.getCost();
         }
         double discount = 0;
-        for (; noOfBread > 0; noOfBread--) {
-            if (noOfSoup >= 2) {
-                discount += Product.BREAD.getCost() / 2;
-                noOfSoup -= 2;
-            } else {
-                break;
+        if (soupAndBreadOfferIsRunning) {
+            for (; noOfBread > 0; noOfBread--) {
+                if (noOfSoup >= 2) {
+                    discount += Product.BREAD.getCost() / 2;
+                    noOfSoup -= 2;
+                } else {
+                    break;
+                }
             }
         }
         total -= discount;
