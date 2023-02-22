@@ -6,12 +6,10 @@ import java.util.List;
 
 public class Basket {
     private List<Product> products;
-    private LocalDate timeOfPurchase;
     private boolean soupAndBreadOfferIsRunning;
     private boolean applesHaveDiscount;
 
     public Basket(LocalDate timeOfPurchase) {
-        this.timeOfPurchase = timeOfPurchase;
         soupAndBreadOfferIsRunning = timeOfPurchase.isAfter(LocalDate.now().minusDays(1))
                 && timeOfPurchase.isBefore(LocalDate.now().plusDays(6));
         applesHaveDiscount = timeOfPurchase.isAfter(LocalDate.now().plusDays(3))
