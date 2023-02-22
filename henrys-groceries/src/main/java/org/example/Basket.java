@@ -24,11 +24,14 @@ public class Basket {
         double total = 0;
         int noOfSoup = 0;
         int noOfBread = 0;
+        int noOfApples = 0;
         for (Product product : products) {
             if (product == Product.SOUP) {
                 noOfSoup++;
             } else if (product == Product.BREAD) {
                 noOfBread++;
+            } else if (product == Product.APPLE) {
+                noOfApples++;
             }
             total += product.getCost();
         }
@@ -42,6 +45,9 @@ public class Basket {
                     break;
                 }
             }
+        }
+        for (; noOfApples > 0; noOfApples--) {
+            discount += Product.APPLE.getCost() / 10;
         }
         total -= discount;
         return String.format("%.2f", total);
