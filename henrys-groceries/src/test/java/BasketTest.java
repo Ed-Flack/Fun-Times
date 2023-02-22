@@ -3,11 +3,13 @@ import org.example.Product;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 public class BasketTest {
 
     @Test
     public void canAddProductToBasket() {
-        Basket basket = new Basket();
+        Basket basket = new Basket(LocalDate.now());
         basket.addProduct(Product.SOUP);
         String expected = "0.65";
         String actual = basket.getTotal();
@@ -16,7 +18,7 @@ public class BasketTest {
 
     @Test
     public void canAddTwoProductsToBasket() {
-        Basket basket = new Basket();
+        Basket basket = new Basket(LocalDate.now());
         basket.addProduct(Product.SOUP);
         basket.addProduct(Product.BREAD);
         String expected = "1.45";
@@ -26,7 +28,7 @@ public class BasketTest {
 
     @Test
     public void buyTwoTinsOfSoupAndGetALoafOdBreadHalfPrice() {
-        Basket basket = new Basket();
+        Basket basket = new Basket(LocalDate.now());
         basket.addProduct(Product.SOUP);
         basket.addProduct(Product.SOUP);
         basket.addProduct(Product.BREAD);

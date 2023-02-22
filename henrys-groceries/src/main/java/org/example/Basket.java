@@ -6,8 +6,10 @@ import java.util.List;
 
 public class Basket {
     private List<Product> products;
+    private LocalDate timeOfPurchase;
 
-    public Basket() {
+    public Basket(LocalDate timeOfPurchase) {
+        this.timeOfPurchase = timeOfPurchase;
         products = new ArrayList<>();
     }
 
