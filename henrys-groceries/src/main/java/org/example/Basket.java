@@ -1,10 +1,11 @@
 package org.example;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Basket {
-    List<Product> products;
+    private List<Product> products;
 
     public Basket() {
         products = new ArrayList<>();
