@@ -61,7 +61,34 @@ public class BasketTest {
 
     @Test
     public void appleHasTenPercentDiscount() {
+        Basket basket = new Basket(LocalDate.now().plusDays(4));
+        basket.addProduct(Product.APPLE);
+        String expected = "0.09";
+        String actual = basket.getTotal();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void appleHasTenPercentDiscountBeforeOfferStartDate() {
         Basket basket = new Basket(LocalDate.now());
+        basket.addProduct(Product.APPLE);
+        String expected = "0.10";
+        String actual = basket.getTotal();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void appleHasTenPercentDiscountAfterOfferEndDate() {
+        Basket basket = new Basket(LocalDate.now().plusMonths(1));
+        basket.addProduct(Product.APPLE);
+        String expected = "0.10";
+        String actual = basket.getTotal();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void appleHasTenPercentDiscountOnFinalDayOfOffer() {
+        Basket basket = new Basket(LocalDate.now().plusMonths(1).minusDays(1));
         basket.addProduct(Product.APPLE);
         String expected = "0.09";
         String actual = basket.getTotal();

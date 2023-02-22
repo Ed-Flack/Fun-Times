@@ -8,11 +8,14 @@ public class Basket {
     private List<Product> products;
     private LocalDate timeOfPurchase;
     private boolean soupAndBreadOfferIsRunning;
+    private boolean applesHaveDiscount;
 
     public Basket(LocalDate timeOfPurchase) {
         this.timeOfPurchase = timeOfPurchase;
         soupAndBreadOfferIsRunning = timeOfPurchase.isAfter(LocalDate.now().minusDays(1))
                 && timeOfPurchase.isBefore(LocalDate.now().plusDays(6));
+        applesHaveDiscount = timeOfPurchase.isAfter(LocalDate.now().plusDays(3))
+                && timeOfPurchase.isBefore(LocalDate.now().plusMonths(1));
         products = new ArrayList<>();
     }
 
@@ -46,8 +49,10 @@ public class Basket {
                 }
             }
         }
-        for (; noOfApples > 0; noOfApples--) {
-            discount += Product.APPLE.getCost() / 10;
+        if (applesHaveDiscount) {
+            for (; noOfApples > 0; noOfApples--) {
+                discount += Product.APPLE.getCost() / 10;
+            }
         }
         total -= discount;
         return String.format("%.2f", total);
