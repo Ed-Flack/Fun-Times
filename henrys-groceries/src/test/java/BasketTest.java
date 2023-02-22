@@ -8,8 +8,7 @@ public class BasketTest {
     @Test
     public void canAddProductToBasket() {
         Basket basket = new Basket();
-        Product product = new Product("soup", "tin", 0.65);
-        basket.addProduct(product);
+        basket.addProduct(Product.SOUP);
         String expected = "0.65";
         String actual = basket.getTotal();
         Assertions.assertEquals(expected, actual);
@@ -18,11 +17,10 @@ public class BasketTest {
     @Test
     public void canAddTwoProductsToBasket() {
         Basket basket = new Basket();
-        basket.addProduct(new Product("soup", "tin", 0.65));
-        basket.addProduct(new Product("bread", "loaf", 0.80));
+        basket.addProduct(Product.SOUP);
+        basket.addProduct(Product.BREAD);
         String expected = "1.45";
         String actual = basket.getTotal();
         Assertions.assertEquals(expected, actual);
     }
-
 }
