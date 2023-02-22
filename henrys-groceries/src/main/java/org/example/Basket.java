@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Basket {
-    private List<Product> products;
-    private boolean soupAndBreadOfferIsRunning;
-    private boolean applesHaveDiscount;
+    private final List<Product> products;
+    private final boolean soupAndBreadOfferIsRunning;
+    private final boolean applesHaveDiscount;
 
     public Basket(LocalDate timeOfPurchase) {
         soupAndBreadOfferIsRunning = timeOfPurchase.isAfter(LocalDate.now().minusDays(1))
